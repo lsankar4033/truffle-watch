@@ -1,0 +1,19 @@
+{
+  "name": "truffle-watch",
+  "version": "0.1.1",
+  "description": "run commands when files change",
+  "main": "watch.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lsankar4033/truffle-watch.git"
+  },
+  "author": "lsankar4033",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lsankar4033/truffle-watch/issues"
+  },
+  "homepage": "https://github.com/lsankar4033/truffle-watch#readme"
+}
