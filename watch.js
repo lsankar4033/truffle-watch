@@ -1,6 +1,20 @@
 const chokidar = require('chokidar');
+const fs = require('fs')
 const Queue = require('better-queue');
-const { spawn, spawnSync } = require('child_process');
+const { spawnSync } = require('child_process');
+
+DEFAULT_WATCHER_CONFIG = {
+  'test': {
+    'cmd': 'truffle',
+    'args': ['test'],
+    'files': ['contracts/*.sol', 'test/*.js']
+  }
+}
+
+function loadWatcherConfig(configFile) {
+  let rawdata = fs.readFileSync(configFile);
+  return JSON.parse(rawdata);
+}
 
 // Object that keeps track of which names have active processes
 nameToActiveProcess = {}
@@ -21,7 +35,6 @@ processQueue = new Queue((procDef, cb) => {
   cb(null);
 });
 
-
 /**
  * Setup a watcher for a single command/regex
  */
@@ -36,8 +49,31 @@ function setupWatcher(name, regexes, cmd, args) {
   });
 }
 
+async function delay(ms) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(), ms)
+  })
+}
+
 module.exports = async (config) => {
+  if (config.help) {
+    // TODO
+    console.log('INSERT USEFUL HELP MESSAGE');
+    return;
+  }
 
-  setupWatcher('test', ['contracts/', 'test/'], 'truffle', ['test']);
+  watcherConfig = config.config ? loadWatcherConfig(config.config) : DEFAULT_WATCHER_CONFIG;
+  for (var name in watcherConfig) {
+    setupWatcher(
+      name,
+      watcherConfig[name]['files'],
+      watcherConfig[name]['cmd'],
+      watcherConfig[name]['args']
+    )
+  }
 
+  // NOTE: not the cleanest way to avoid exiting, but it works
+  while (true) {
+    await delay(5000);
+  }
 }
