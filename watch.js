@@ -57,8 +57,10 @@ async function delay(ms) {
 
 module.exports = async (config) => {
   if (config.help) {
-    // TODO
-    console.log('INSERT USEFUL HELP MESSAGE');
+    console.log('Usage: truffle run watch [options]');
+    console.log('');
+    console.log('Options:');
+    console.log('  --config [CONFIG_FILE]     Use the specified CONFIG_FILE to determine watchers');
     return;
   }
 
@@ -74,6 +76,6 @@ module.exports = async (config) => {
 
   // NOTE: not the cleanest way to avoid exiting, but it works
   while (true) {
-    await delay(5000);
+    await delay(2000);
   }
 }
