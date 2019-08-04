@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/lsankar4033/truffle-watch/issues"
   },
-  "homepage": "https://github.com/lsankar4033/truffle-watch#readme"
+  "homepage": "https://github.com/lsankar4033/truffle-watch#readme",
+  "dependencies": {
+    "chokidar": "3.0.2"
+  }
 }
