@@ -5,6 +5,7 @@ const { spawn, spawnSync } = require('child_process');
 // Object that keeps track of which names have active processes
 nameToActiveProcess = {}
 
+// Queue for synchronously running each logging command
 processQueue = new Queue((procDef, cb) => {
   const [name, cmd, args] = procDef;
 
@@ -21,9 +22,12 @@ processQueue = new Queue((procDef, cb) => {
 });
 
 
+/**
+ * Setup a watcher for a single command/regex
+ */
 function setupWatcher(name, regexes, cmd, args) {
   chokidar.watch(regexes).on('change', async (event, path) => {
-    // NOTE: We might need to lock on nameToActiveProcess
+    // Don't allow multiple processes of the same name be added to the queue simultaneously!
     if (!nameToActiveProcess[name]) {
       nameToActiveProcess[name] = true;
 
