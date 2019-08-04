@@ -18,17 +18,34 @@ Sample usages:
 
 ```
 $ truffle watch
-$ truffle watch --compile --slither
-$ truffle watch --compile Token.sol
+$ truffle watch --config config.json
 ```
 
 Sample config:
 
 ```
 {
-  "slither": {
-    "cmd": "slither .",
-    "files": ["contracts/*.sol", "test/*.js"]
+  'test': {
+    'cmd': 'truffle',
+    'args': ['test'],
+    'files': ['contracts/*.sol', 'test/*.js']
+  },
+  'slither': {
+    'cmd': 'slither',
+    'args': ['.'],
+    'files': ['contracts/*.sol']
+  }
+}
+```
+
+Default config:
+
+```
+{
+  'test': {
+    'cmd': 'truffle',
+    'args': ['test'],
+    'files': ['contracts/', 'test/']
   }
 }
 ```

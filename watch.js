@@ -7,7 +7,7 @@ DEFAULT_WATCHER_CONFIG = {
   'test': {
     'cmd': 'truffle',
     'args': ['test'],
-    'files': ['contracts/*.sol', 'test/*.js']
+    'files': ['contracts/', 'test/']
   }
 }
 
