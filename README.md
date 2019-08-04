@@ -12,7 +12,25 @@ When developing contracts, we do a suite of checks regularly whenever we make ch
 
 truffle-watch enables you to run all of these checks in a single terminal session.
 
-## Example usage, etc.
+## Installation
+
+1: Install the plugin
+```
+$ npm i truffle-watch
+```
+
+2: Add the plugin to `truffle.js` or `truffle-config.js`
+```
+module.exports = {
+  /* ... rest of truffle-config */
+
+  plugins: [
+    'truffle-watch'
+  ]
+}
+```
+
+## Usage
 
 Sample usages:
 
