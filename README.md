@@ -35,8 +35,8 @@ module.exports = {
 Sample usages:
 
 ```
-$ truffle watch
-$ truffle watch --config config.json
+$ truffle run watch
+$ truffle run watch --config config.json
 ```
 
 Sample config:
